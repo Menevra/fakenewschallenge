@@ -1,17 +1,3 @@
-# Copyright 2017 Benjamin Riedel
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 
 # Import relevant packages and modules
 from csv import DictReader
@@ -57,13 +43,7 @@ stop_words = [
 
 
 # Define data class
-class FNCData:
-
-    """
-
-    Define class for Fake News Challenge data
-
-    """
+class Data:
 
     def __init__(self, file_instances, file_bodies):
 
@@ -87,8 +67,6 @@ class FNCData:
     def read(self, filename):
 
         """
-        Read Fake News Challenge data from CSV file
-
         Args:
             filename: str, filename + extension
 
@@ -117,8 +95,8 @@ def pipeline_train(train, test, lim_unigram):
     Process train set, create relevant vectorizers
 
     Args:
-        train: FNCData object, train set
-        test: FNCData object, test set
+        train: Data object, training set
+        test: Data object, testing set
         lim_unigram: int, number of most frequent words to consider
 
     Returns:
@@ -220,7 +198,7 @@ def pipeline_test(test, bow_vectorizer, tfreq_vectorizer, tfidf_vectorizer):
     Process test set
 
     Args:
-        test: FNCData object, test set
+        test: Data object, test set
         bow_vectorizer: sklearn CountVectorizer
         tfreq_vectorizer: sklearn TfidfTransformer(use_idf=False)
         tfidf_vectorizer: sklearn TfidfVectorizer()
